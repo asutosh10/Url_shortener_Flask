@@ -1,0 +1,24 @@
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <title>URL_short</title>
+</head>
+<body>
+  {%for message in get_flashed_messages()%}
+  <h1>{{message}}</h1>
+  {%endfor%}
+  <h1 style='margin-left:500px;margin-top:60px;font-size:60px;color:#cc3399;'>URL Shortener</h1>
+  <form action='/process' method='post'>
+    <label style='font-size:40px;color:#000066;' for='url'>Website URL</label>
+    <input style='font-size:40px;color:#000066;' type='url' name='url' value='' required/><br/><br/>
+    <label style='font-size:40px;color:#000066;' for='code'>Short name</label>
+    <input style='font-size:40px;color:#000066;' type='text' name='code' value='' required/><br/>
+    <input style='font-size:40px;color:#000066;margin-top:20px;' type='submit' value='shorten'/>
+  </form>
+  <ul>
+    {%for code in codes%}
+    <a href="{{url_for('redirect_to_url',code=code)}} " target="_blank"><li>{{code}}</li></a>
+    {%endfor%}
+  </ul>
+</body>
+</html>
